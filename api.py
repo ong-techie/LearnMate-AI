@@ -269,6 +269,15 @@ async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "service": "LearnMate API"}
 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "LearnMate API is running"}
+
+
 
 if __name__ == "__main__":
     import uvicorn

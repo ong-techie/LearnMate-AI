@@ -21,7 +21,8 @@ class Config(BaseModel):
 
 def load_config() -> Config:
     """Load and validate configuration from environment variables."""
-    openai_key = os.getenv("OPENAI_API_KEY")
+    openai_key = (os.getenv("OPENAI_API_KEY")
+    or st.secrets.get("OPENAI_API_KEY", None))
     
     # Validate API key
     if not openai_key:
@@ -31,6 +32,6 @@ def load_config() -> Config:
         )
     
     return Config(
-        openai_api_key=openai_key
+        "openai_api_key"=openai_key
     )
 
